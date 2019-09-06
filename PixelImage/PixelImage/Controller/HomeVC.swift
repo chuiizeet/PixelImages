@@ -11,6 +11,7 @@ import UIKit
 class HomeVC: UIViewController {
     
     // MARK: - Properties
+    
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -33,11 +34,22 @@ class HomeVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         let image = Image(image: UIImage(named: "burger")!)
-        imageView.image = image.toUIImage()
+        let i2 = image.transfromPixels(transformFunc: halfIntense)
+        imageView.image = i2.toUIImage()
         
         view.addSubview(imageView)
         imageView.center(inView: view)
         
+    }
+    
+    func halfIntense(p: RGBAPixel) -> RGBAPixel {
+        var p2 = p
+        
+        p2.red = p.red / 2
+        p2.green = p.green / 2
+        p2.blue = p.blue / 2
+        
+        return p2
     }
 
 
