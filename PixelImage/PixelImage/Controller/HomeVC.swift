@@ -13,7 +13,6 @@ class HomeVC: UIViewController {
     // MARK: - Properties
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "burger")
         iv.contentMode = .scaleAspectFit
         return iv
     }()
@@ -32,6 +31,9 @@ class HomeVC: UIViewController {
         
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
+        
+        let image = Image(image: UIImage(named: "burger")!)
+        imageView.image = image.toUIImage()
         
         view.addSubview(imageView)
         imageView.center(inView: view)
