@@ -16,6 +16,8 @@
 		88A00ABF23222CC7009B3A35 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00ABE23222CC7009B3A35 /* Extensions.swift */; };
 		88A00AC1232232C9009B3A35 /* RGBAPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00AC0232232C9009B3A35 /* RGBAPixel.swift */; };
 		88A00AC3232232F3009B3A35 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00AC2232232F3009B3A35 /* Image.swift */; };
+		88A00AC723238CBE009B3A35 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00AC623238CBE009B3A35 /* Filter.swift */; };
+		88A00AC923238D0A009B3A35 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00AC823238D0A009B3A35 /* Filters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		88A00ABE23222CC7009B3A35 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		88A00AC0232232C9009B3A35 /* RGBAPixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBAPixel.swift; sourceTree = "<group>"; };
 		88A00AC2232232F3009B3A35 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		88A00AC623238CBE009B3A35 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		88A00AC823238D0A009B3A35 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 			children = (
 				88A00AC0232232C9009B3A35 /* RGBAPixel.swift */,
 				88A00AC2232232F3009B3A35 /* Image.swift */,
+				88A00AC623238CBE009B3A35 /* Filter.swift */,
+				88A00AC823238D0A009B3A35 /* Filters.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,6 +177,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88A00AC723238CBE009B3A35 /* Filter.swift in Sources */,
+				88A00AC923238D0A009B3A35 /* Filters.swift in Sources */,
 				88A00ABC23222CA2009B3A35 /* HomeVC.swift in Sources */,
 				88A00AC3232232F3009B3A35 /* Image.swift in Sources */,
 				88A00AC1232232C9009B3A35 /* RGBAPixel.swift in Sources */,

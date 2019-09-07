@@ -30,26 +30,20 @@ class HomeVC: UIViewController {
     
     func setupViewComponents() {
         
+        
+        let burguer = Image(image: UIImage(named: "burger")!)
+        
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
         
-        let image = Image(image: UIImage(named: "burger")!)
-        let i2 = image.transfromPixels(transformFunc: halfIntense)
+        let f1 = MixFilter()
+        let i2 = f1.apply(input: burguer)
         imageView.image = i2.toUIImage()
+        
         
         view.addSubview(imageView)
         imageView.center(inView: view)
         
-    }
-    
-    func halfIntense(p: RGBAPixel) -> RGBAPixel {
-        var p2 = p
-        
-        p2.red = p.red / 2
-        p2.green = p.green / 2
-        p2.blue = p.blue / 2
-        
-        return p2
     }
 
 
