@@ -31,12 +31,9 @@ class HomeVC: UIViewController {
     // MARK: - Helper Functions
     
     func setupViewComponents() {
-        
-        
-        
-        
+
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(handlerTapBtn))
         
         selectedFilters.filters.append(MixFilter())
         selectedFilters.filters.append(ScaleOntensityFilter(scale: 0.85))
@@ -53,6 +50,15 @@ class HomeVC: UIViewController {
             burger = filter.apply(input: burger)
         }
         return burger
+    }
+    
+    // MARK: - Handlers
+    
+    @objc func handlerTapBtn() {
+        
+        let vc = SelectFiltersVC(style: .plain)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 
 }
