@@ -13,8 +13,8 @@ private let reuseIdentifier = "FiltersCell"
 class SelectFiltersVC: UITableViewController {
     
     // MARK: - Properties
-    
-    let dummyData = ["Filter 1", "Filter 2"]
+
+    var filtersModel: FiltersModel = FiltersModel()
     
     // MARK: - Init
 
@@ -36,14 +36,14 @@ class SelectFiltersVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return dummyData.count
+        return filtersModel.filters.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! FilterCell
         
-        cell.textLabel?.text = dummyData[indexPath.row]
+        cell.textLabel?.text = filtersModel.filters[indexPath.row].name
         
         return cell
         

@@ -40,12 +40,13 @@ class HomeVC: UIViewController {
         
         view.addSubview(imageView)
         imageView.image = filterImage().toUIImage()
+        imageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 400, height: 650)
         imageView.center(inView: view)
         
     }
     
     func filterImage() -> Image {
-        var burger = Image(image: UIImage(named: "burger")!)
+        var burger = Image(image: UIImage(named: "watson")!)
         for filter in selectedFilters.filters {
             burger = filter.apply(input: burger)
         }
@@ -57,6 +58,7 @@ class HomeVC: UIViewController {
     @objc func handlerTapBtn() {
         
         let vc = SelectFiltersVC(style: .plain)
+        vc.filtersModel = selectedFilters
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 class ScaleOntensityFilter: Filter {
-    
+    var name: String = "Scale intensity"
     let scale: Double
     
     init(scale: Double) {
@@ -27,7 +27,8 @@ class ScaleOntensityFilter: Filter {
     }
 }
 
-class MixFilter: Filter {    
+class MixFilter: Filter {
+    var name: String = "Mix filter"
     func apply(input: Image) -> Image {
         return input.transfromPixels(transformFunc: { (p1:RGBAPixel) -> RGBAPixel in
             var p = p1
