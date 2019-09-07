@@ -12,6 +12,8 @@ class HomeVC: UIViewController {
     
     // MARK: - Properties
     
+    var selectedFilters: FiltersModel = FiltersModel()
+    
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -31,20 +33,26 @@ class HomeVC: UIViewController {
     func setupViewComponents() {
         
         
-        let burguer = Image(image: UIImage(named: "burger")!)
+        
         
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
         
-        let f1 = MixFilter()
-        let i2 = f1.apply(input: burguer)
-        imageView.image = i2.toUIImage()
-        
+        selectedFilters.filters.append(MixFilter())
+        selectedFilters.filters.append(ScaleOntensityFilter(scale: 0.85))
         
         view.addSubview(imageView)
+        imageView.image = filterImage().toUIImage()
         imageView.center(inView: view)
         
     }
-
+    
+    func filterImage() -> Image {
+        var burger = Image(image: UIImage(named: "burger")!)
+        for filter in selectedFilters.filters {
+            burger = filter.apply(input: burger)
+        }
+        return burger
+    }
 
 }
