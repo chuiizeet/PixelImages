@@ -30,6 +30,9 @@ class SelectFiltersVC: UITableViewController {
         
         tableView.backgroundColor = .white
         tableView.separatorColor = .clear
+        tableView.isEditing = true
+        
+        self.navigationItem.title = "Filters"
         tableView.register(FilterCell.self, forCellReuseIdentifier: reuseIdentifier)
         
     }
@@ -48,6 +51,29 @@ class SelectFiltersVC: UITableViewController {
         return cell
         
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            filtersModel.filters.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        
+    }
 
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let item = filtersModel.filters[sourceIndexPath.row]
+        filtersModel.filters.remove(at: sourceIndexPath.row)
+        filtersModel.filters.insert(item, at: destinationIndexPath.row)
+        tableView.reloadData()
+    }
 
 }

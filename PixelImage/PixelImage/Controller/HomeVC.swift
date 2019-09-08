@@ -35,8 +35,9 @@ class HomeVC: UIViewController {
         view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(handlerTapBtn))
         
-        selectedFilters.filters.append(MixFilter())
-        selectedFilters.filters.append(ScaleOntensityFilter(scale: 0.85))
+        selectedFilters.filters.append(InvertFilter())
+//        selectedFilters.filters.append(MixFilter())
+//        selectedFilters.filters.append(ScaleOntensityFilter(scale: 0.85))
         
         view.addSubview(imageView)
         imageView.image = filterImage().toUIImage()

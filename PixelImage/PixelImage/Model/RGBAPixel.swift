@@ -12,6 +12,11 @@ public struct RGBAPixel {
     public init(rawVal: UInt32) {
         raw = rawVal
     }
+    
+    public init(r: UInt8, g: UInt8, b: UInt8) {
+        raw = 0xFF000000 | UInt32(r) | UInt32(g) << 8 | UInt32(b) << 16
+    }
+    
     public var raw: UInt32
     public var red: UInt8 {
         get { return UInt8(raw & 0xFF) }
@@ -28,5 +33,9 @@ public struct RGBAPixel {
     public var alpha: UInt8 {
         get { return UInt8((raw & 0xFF000000) >> 24) }
         set { raw = (UInt32(newValue) << 24) | (raw & 0x00FFFFFF) }
+    }
+    
+    public var averageIntensity: UInt8 {
+        get { return UInt8((UInt32(red)+UInt32(green)+UInt32(blue))/3) }
     }
 }

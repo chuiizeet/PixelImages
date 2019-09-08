@@ -40,3 +40,22 @@ class MixFilter: Filter {
         })
     }
 }
+
+class GrayScale: Filter {
+    var name: String = "Gray scale filter"
+    func apply(input: Image) -> Image {
+        return input.transfromPixels(transformFunc: { (p:RGBAPixel) -> RGBAPixel in
+            let i = p.averageIntensity
+            return RGBAPixel(r: i, g: i, b: i)
+        })
+    }
+}
+
+class InvertFilter: Filter {
+    var name: String = "Invert filter"
+    func apply(input: Image) -> Image {
+        return input.transfromPixels(transformFunc: { (p:RGBAPixel) -> RGBAPixel in
+            return RGBAPixel(r: (0xFF-p.red), g: (0xFF-p.green), b: (0xFF-p.blue))
+        })
+    }
+}
