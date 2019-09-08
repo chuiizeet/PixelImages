@@ -14,6 +14,8 @@ class AddFiltersVC: UITableViewController {
     
     // MARK: - Properties
     
+    var filtersModel: FiltersModel = FiltersModel()
+    
     // MARK: - Init
 
     override func viewDidLoad() {
@@ -40,6 +42,13 @@ class AddFiltersVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         cell.textLabel?.text = allFilters[indexPath.row].name
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = allFilters[indexPath.row]
+        filtersModel.filters.append(selectedItem)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FiltersUpdated"), object: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 
 

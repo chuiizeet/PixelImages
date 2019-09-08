@@ -32,6 +32,8 @@ class SelectFiltersVC: UITableViewController {
         tableView.separatorColor = .clear
         tableView.isEditing = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(filtersUpdated), name: NSNotification.Name(rawValue: "FiltersUpdated"), object: nil)
+        
         self.navigationItem.title = "Filters"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handlerTapBtn))
         tableView.register(FilterCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -79,9 +81,14 @@ class SelectFiltersVC: UITableViewController {
     
     // MARK: - Handlers
     
+    @objc func filtersUpdated() {
+        tableView.reloadData()
+    }
+    
     @objc func handlerTapBtn() {
         
         let vc = AddFiltersVC()
+        vc.filtersModel = self.filtersModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
