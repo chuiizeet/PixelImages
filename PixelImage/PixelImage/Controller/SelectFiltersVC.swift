@@ -33,6 +33,7 @@ class SelectFiltersVC: UITableViewController {
         tableView.isEditing = true
         
         self.navigationItem.title = "Filters"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handlerTapBtn))
         tableView.register(FilterCell.self, forCellReuseIdentifier: reuseIdentifier)
         
     }
@@ -74,6 +75,14 @@ class SelectFiltersVC: UITableViewController {
         filtersModel.filters.remove(at: sourceIndexPath.row)
         filtersModel.filters.insert(item, at: destinationIndexPath.row)
         tableView.reloadData()
+    }
+    
+    // MARK: - Handlers
+    
+    @objc func handlerTapBtn() {
+        
+        let vc = AddFiltersVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

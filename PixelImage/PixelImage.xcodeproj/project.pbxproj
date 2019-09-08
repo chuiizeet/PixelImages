@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8833C9342324C01800AEC434 /* AddFiltersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833C9332324C01800AEC434 /* AddFiltersVC.swift */; };
 		88A00AA823222A5E009B3A35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00AA723222A5E009B3A35 /* AppDelegate.swift */; };
 		88A00AAA23222A5E009B3A35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00AA923222A5E009B3A35 /* ViewController.swift */; };
 		88A00AAD23222A5E009B3A35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A00AAB23222A5E009B3A35 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8833C9332324C01800AEC434 /* AddFiltersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFiltersVC.swift; sourceTree = "<group>"; };
 		88A00AA423222A5E009B3A35 /* PixelImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A00AA723222A5E009B3A35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88A00AA923222A5E009B3A35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				88A00ABB23222CA2009B3A35 /* HomeVC.swift */,
 				88A00ACC232395E0009B3A35 /* SelectFiltersVC.swift */,
+				8833C9332324C01800AEC434 /* AddFiltersVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				88A00ACD232395E0009B3A35 /* SelectFiltersVC.swift in Sources */,
 				88A00AC3232232F3009B3A35 /* Image.swift in Sources */,
 				88A00AC1232232C9009B3A35 /* RGBAPixel.swift in Sources */,
+				8833C9342324C01800AEC434 /* AddFiltersVC.swift in Sources */,
 				88A00AAA23222A5E009B3A35 /* ViewController.swift in Sources */,
 				88A00AA823222A5E009B3A35 /* AppDelegate.swift in Sources */,
 				88A00ABF23222CC7009B3A35 /* Extensions.swift in Sources */,

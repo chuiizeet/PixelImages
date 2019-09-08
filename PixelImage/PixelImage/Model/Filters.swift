@@ -8,6 +8,13 @@
 
 import UIKit
 
+let allFilters: [Filter] = [
+    ScaleOntensityFilter(scale: 0.5),
+    MixFilter(),
+    GrayScale(),
+    InvertFilter()
+]
+
 class ScaleOntensityFilter: Filter {
     var name: String = "Scale intensity"
     let scale: Double
