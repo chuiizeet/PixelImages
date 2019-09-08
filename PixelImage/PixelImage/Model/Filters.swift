@@ -12,8 +12,46 @@ let allFilters: [Filter] = [
     ScaleOntensityFilter(scale: 0.5),
     MixFilter(),
     GrayScale(),
-    InvertFilter()
+    InvertFilter(),
+    colors8Filter(),
+    Dither8Filter()
 ]
+
+let palette8: [RGBAPixel] = [
+    RGBAPixel(r: 0, g: 0, b: 0),
+    RGBAPixel(r: 0xFF, g: 0xFF, b: 0xFF),
+    RGBAPixel(r: 0xFF, g: 0x0, b: 0x0),
+    RGBAPixel(r: 0x0, g: 0xFF, b: 0x0),
+    RGBAPixel(r: 0x0, g: 0x0, b: 0xFF),
+    RGBAPixel(r: 0xFF, g: 0xFF, b: 0x0),
+    RGBAPixel(r: 0xFF, g: 0x0, b: 0xFF),
+    RGBAPixel(r: 0x0, g: 0xFF, b: 0xFF),
+    
+]
+
+class colors8Filter: Filter {
+    var name: String = "8 colors"
+    func apply(input: Image) -> Image {
+        return input.transfromPixels(transformFunc: { (p:RGBAPixel) -> RGBAPixel in
+            return p.findClosestMatch(palette: palette8)
+        })
+    }
+}
+
+class Dither8Filter: Filter {
+    var name: String = "Dither 8 colors"
+    func apply(input: Image) -> Image {
+        var delta = PixelDelta(rDelta: 0, gDelta: 0, bDelta: 0)
+        return input.transfromPixels(transformFunc: { (requestedPixel:RGBAPixel) -> RGBAPixel in
+            delta = delta.add(p: requestedPixel)
+            let newPixel = delta.asPixel().findClosestMatch(palette: palette8)
+            
+            delta = delta.subtract(p: newPixel)
+            
+            return newPixel
+        })
+    }
+}
 
 class ScaleOntensityFilter: Filter {
     var name: String = "Scale intensity"

@@ -38,4 +38,20 @@ public struct RGBAPixel {
     public var averageIntensity: UInt8 {
         get { return UInt8((UInt32(red)+UInt32(green)+UInt32(blue))/3) }
     }
+    public func findClosestMatch(palette: [RGBAPixel]) -> RGBAPixel {
+        var closestMatch: RGBAPixel = palette[0]
+        var bestMatchSoFar: Int = palette[0].pixelDelta(otherPixel: self)
+        
+        for pixel in palette {
+            let delta: Int = pixel.pixelDelta(otherPixel: self)
+            if (delta < bestMatchSoFar) {
+                closestMatch = pixel
+                bestMatchSoFar = delta
+            }
+        }
+        return closestMatch
+    }
+    public func pixelDelta(otherPixel: RGBAPixel) -> Int {
+        return abs(Int(self.red) - Int(otherPixel.red)) + abs(Int(self.green) - Int(otherPixel.green)) + abs(Int(self.blue) - Int(otherPixel.blue))
+    }
 }

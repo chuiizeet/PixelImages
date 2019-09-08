@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8833C9342324C01800AEC434 /* AddFiltersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833C9332324C01800AEC434 /* AddFiltersVC.swift */; };
+		8833C9362324E0AD00AEC434 /* PixelDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833C9352324E0AD00AEC434 /* PixelDelta.swift */; };
 		88A00AA823222A5E009B3A35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00AA723222A5E009B3A35 /* AppDelegate.swift */; };
 		88A00AAA23222A5E009B3A35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00AA923222A5E009B3A35 /* ViewController.swift */; };
 		88A00AAD23222A5E009B3A35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A00AAB23222A5E009B3A35 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		8833C9332324C01800AEC434 /* AddFiltersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFiltersVC.swift; sourceTree = "<group>"; };
+		8833C9352324E0AD00AEC434 /* PixelDelta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelDelta.swift; sourceTree = "<group>"; };
 		88A00AA423222A5E009B3A35 /* PixelImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A00AA723222A5E009B3A35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88A00AA923222A5E009B3A35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				88A00AC623238CBE009B3A35 /* Filter.swift */,
 				88A00AC823238D0A009B3A35 /* Filters.swift */,
 				88A00ACA23239270009B3A35 /* FiltersModel.swift */,
+				8833C9352324E0AD00AEC434 /* PixelDelta.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				88A00AC1232232C9009B3A35 /* RGBAPixel.swift in Sources */,
 				8833C9342324C01800AEC434 /* AddFiltersVC.swift in Sources */,
 				88A00AAA23222A5E009B3A35 /* ViewController.swift in Sources */,
+				8833C9362324E0AD00AEC434 /* PixelDelta.swift in Sources */,
 				88A00AA823222A5E009B3A35 /* AppDelegate.swift in Sources */,
 				88A00ABF23222CC7009B3A35 /* Extensions.swift in Sources */,
 			);

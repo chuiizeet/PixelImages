@@ -67,6 +67,7 @@ class SelectFiltersVC: UITableViewController {
         
         if editingStyle == .delete {
             filtersModel.filters.remove(at: indexPath.row)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FiltersChanged"), object: nil)
             tableView.reloadData()
         }
         
@@ -76,12 +77,14 @@ class SelectFiltersVC: UITableViewController {
         let item = filtersModel.filters[sourceIndexPath.row]
         filtersModel.filters.remove(at: sourceIndexPath.row)
         filtersModel.filters.insert(item, at: destinationIndexPath.row)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FiltersChanged"), object: nil)
         tableView.reloadData()
     }
     
     // MARK: - Handlers
     
     @objc func filtersUpdated() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FiltersChanged"), object: nil)
         tableView.reloadData()
     }
     

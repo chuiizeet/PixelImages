@@ -13,6 +13,7 @@ class HomeVC: UIViewController {
     // MARK: - Properties
     
     var selectedFilters: FiltersModel = FiltersModel()
+    var filtersHaveChanged = false
     
     let imageView: UIImageView = {
         let iv = UIImageView()
@@ -21,6 +22,16 @@ class HomeVC: UIViewController {
     }()
     
     // MARK: - Init
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if filtersHaveChanged {
+            imageView.image = filterImage().toUIImage()
+            filtersHaveChanged = false
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +45,9 @@ class HomeVC: UIViewController {
 
         view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(handlerTapBtn))
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Apply", style: .done, target: self, action: nil)
         
-        selectedFilters.filters.append(InvertFilter())
-//        selectedFilters.filters.append(MixFilter())
-//        selectedFilters.filters.append(ScaleOntensityFilter(scale: 0.85))
+        NotificationCenter.default.addObserver(self, selector: #selector(filtersChanged), name: NSNotification.Name(rawValue: "FiltersChanged"), object: nil)
         
         view.addSubview(imageView)
         imageView.image = filterImage().toUIImage()
@@ -55,6 +65,10 @@ class HomeVC: UIViewController {
     }
     
     // MARK: - Handlers
+    
+    @objc func filtersChanged() {
+        filtersHaveChanged = true
+    }
     
     @objc func handlerTapBtn() {
         
