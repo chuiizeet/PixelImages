@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8833C9342324C01800AEC434 /* AddFiltersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833C9332324C01800AEC434 /* AddFiltersVC.swift */; };
 		8833C9362324E0AD00AEC434 /* PixelDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833C9352324E0AD00AEC434 /* PixelDelta.swift */; };
+		889B163B2325D08C0050D58D /* MainTabBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889B163A2325D08C0050D58D /* MainTabBVC.swift */; };
+		889B163D2325D0FD0050D58D /* ResizeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889B163C2325D0FD0050D58D /* ResizeVC.swift */; };
+		889B163F2325D10B0050D58D /* CollageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889B163E2325D10B0050D58D /* CollageVC.swift */; };
 		88A00AA823222A5E009B3A35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00AA723222A5E009B3A35 /* AppDelegate.swift */; };
 		88A00AAA23222A5E009B3A35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00AA923222A5E009B3A35 /* ViewController.swift */; };
 		88A00AAD23222A5E009B3A35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A00AAB23222A5E009B3A35 /* Main.storyboard */; };
@@ -28,6 +31,9 @@
 /* Begin PBXFileReference section */
 		8833C9332324C01800AEC434 /* AddFiltersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFiltersVC.swift; sourceTree = "<group>"; };
 		8833C9352324E0AD00AEC434 /* PixelDelta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelDelta.swift; sourceTree = "<group>"; };
+		889B163A2325D08C0050D58D /* MainTabBVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBVC.swift; sourceTree = "<group>"; };
+		889B163C2325D0FD0050D58D /* ResizeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeVC.swift; sourceTree = "<group>"; };
+		889B163E2325D10B0050D58D /* CollageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageVC.swift; sourceTree = "<group>"; };
 		88A00AA423222A5E009B3A35 /* PixelImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A00AA723222A5E009B3A35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88A00AA923222A5E009B3A35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +102,9 @@
 				88A00ABB23222CA2009B3A35 /* HomeVC.swift */,
 				88A00ACC232395E0009B3A35 /* SelectFiltersVC.swift */,
 				8833C9332324C01800AEC434 /* AddFiltersVC.swift */,
+				889B163A2325D08C0050D58D /* MainTabBVC.swift */,
+				889B163C2325D0FD0050D58D /* ResizeVC.swift */,
+				889B163E2325D10B0050D58D /* CollageVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -206,8 +215,11 @@
 				88A00AC923238D0A009B3A35 /* Filters.swift in Sources */,
 				88A00ABC23222CA2009B3A35 /* HomeVC.swift in Sources */,
 				88A00ACD232395E0009B3A35 /* SelectFiltersVC.swift in Sources */,
+				889B163B2325D08C0050D58D /* MainTabBVC.swift in Sources */,
+				889B163D2325D0FD0050D58D /* ResizeVC.swift in Sources */,
 				88A00AC3232232F3009B3A35 /* Image.swift in Sources */,
 				88A00AC1232232C9009B3A35 /* RGBAPixel.swift in Sources */,
+				889B163F2325D10B0050D58D /* CollageVC.swift in Sources */,
 				8833C9342324C01800AEC434 /* AddFiltersVC.swift in Sources */,
 				88A00AAA23222A5E009B3A35 /* ViewController.swift in Sources */,
 				8833C9362324E0AD00AEC434 /* PixelDelta.swift in Sources */,

@@ -20,10 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         
-        let home = HomeVC()
-        let navController = UINavigationController(rootViewController: home)
+        let mainTab = MainTabBVC()
         
-        window?.rootViewController = navController
+        window?.rootViewController = mainTab
         
         return true
     }
