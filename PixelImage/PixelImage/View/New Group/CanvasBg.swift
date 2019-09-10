@@ -12,18 +12,19 @@ class CanvasBg: UIView {
     
     // MARK: - Properties
     
-    var placeHolderImages: [PlaceHolderCollage]? {
+    var placheHolderPositions: [CGRect]? {
         didSet {
-            if self.placeHolderImages != nil {
+            
+            for view in subviews {
+                view.removeFromSuperview()
+            }
+            
+            if self.placheHolderPositions != nil {
                 
-                for (k,placeH) in self.placeHolderImages!.enumerated() {
+                for pos in self.placheHolderPositions! {
+                    let placeH = PlaceHolderCollage()
                     addSubview(placeH)
-                    
-                    if k == 0 {
-                        placeH.frame = CGRect(x: 0, y: 0, width: frame.width/2, height: frame.height).inset(by: UIEdgeInsets(top: 9, left: 9, bottom: 9, right: 9))
-                    } else {
-                        placeH.frame = CGRect(x: frame.width/2, y: 0, width: frame.width/2, height: frame.height).inset(by: UIEdgeInsets(top: 9, left: 9, bottom: 9, right: 9))
-                    }
+                    placeH.frame = pos
                 }
                 
             } else {
