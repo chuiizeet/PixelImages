@@ -32,7 +32,7 @@ class MainTabBVC: UITabBarController {
         
         let resizeVC = constructNavController(title: "Resize", unselectedImage: resizeImage, selectedImage: resizeImage, rootViewController: ResizeVC(collectionViewLayout: UICollectionViewFlowLayout()))
         
-        let collageVC = constructNavController(title: "Collage", unselectedImage: collageImage, selectedImage: collageImage, rootViewController: CollageVC(collectionViewLayout: UICollectionViewFlowLayout()))
+        let collageVC = constructNavController(title: "Collage", unselectedImage: collageImage, selectedImage: collageImage, rootViewController: CollageVC())
         
         // View controller add
         viewControllers = [filtersVC, resizeVC, collageVC]
@@ -42,6 +42,8 @@ class MainTabBVC: UITabBarController {
         for item in items {
             item.imageInsets = UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0)
         }
+        
+        tabBar.backgroundColor = .white
         
     }
     
