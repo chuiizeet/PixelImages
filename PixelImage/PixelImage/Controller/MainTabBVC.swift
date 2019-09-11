@@ -30,7 +30,7 @@ class MainTabBVC: UITabBarController {
         
         let filtersVC = constructNavController(title: "Filters", unselectedImage: filterImage, selectedImage: filterImage, rootViewController: HomeVC())
         
-        let resizeVC = constructNavController(title: "Resize", unselectedImage: resizeImage, selectedImage: resizeImage, rootViewController: ResizeVC(collectionViewLayout: UICollectionViewFlowLayout()))
+        let resizeVC = constructNavController(title: "Resize", unselectedImage: resizeImage, selectedImage: resizeImage, rootViewController: ResizeVC())
         
         let collageVC = constructNavController(title: "Collage", unselectedImage: collageImage, selectedImage: collageImage, rootViewController: CollageVC())
         
