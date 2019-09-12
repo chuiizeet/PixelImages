@@ -13,12 +13,29 @@ class HomeVC: UIViewController {
     // MARK: - Properties
     
     var selectedFilters: FiltersModel = FiltersModel()
+    var filter = ChromaticAberration()
     var filtersHaveChanged = false
     
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         return iv
+    }()
+    
+    let radiusSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = 25
+        slider.addTarget(self, action: #selector(handlerRadius), for: .valueChanged)
+        return slider
+    }()
+    
+    let angleSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = Float((Double.pi * 2))
+        slider.addTarget(self, action: #selector(handlerAngle), for: .valueChanged)
+        return slider
     }()
     
     // MARK: - Init
@@ -49,26 +66,26 @@ class HomeVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(filtersChanged), name: NSNotification.Name(rawValue: "FiltersChanged"), object: nil)
         
-//        view.addSubview(imageView)
-//        imageView.image = filterImage().toUIImage()
-//        imageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 400, height: 650)
-//        imageView.center(inView: view)
-        
         let ciimage = CIImage(image: UIImage(named: "watson")!)
-        let filter = TransverseChromaticAberration()
-        
+
         filter.inputImage = ciimage
-        filter.inputBlur = 20
-        filter.inputSamples = 3
-        filter.inputFalloff = 0.5
+        filter.inputAngle = 0
+        filter.inputRadius = 0
         
         let output = filter.outputImage!
         let context = CIContext()
         let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
         imageView.image = UIImage(cgImage: ciOutputImage!)
         view.addSubview(imageView)
-        imageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 400, height: 650)
-        imageView.center(inView: view)
+        imageView.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 400, height: 650)
+        imageView.centerX(inView: view)
+        
+        view.addSubview(radiusSlider)
+        radiusSlider.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 50, paddingBottom: 0, paddingRight: 50, width: 0, height: 0)
+        
+        view.addSubview(angleSlider)
+        angleSlider.anchor(top: radiusSlider.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 50, paddingBottom: 0, paddingRight: 50, width: 0, height: 0)
+
         
     }
     
@@ -84,6 +101,28 @@ class HomeVC: UIViewController {
     
     @objc func filtersChanged() {
         filtersHaveChanged = true
+    }
+    
+    @objc func handlerRadius(_ sender: UISlider) {
+        let ciimage = CIImage(image: UIImage(named: "watson")!)
+        
+        filter.inputRadius = CGFloat(sender.value)
+        let output = filter.outputImage!
+        let context = CIContext()
+        let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
+        imageView.image = UIImage(cgImage: ciOutputImage!)
+        view.layoutIfNeeded()
+    }
+    
+    @objc func handlerAngle(_ sender: UISlider) {
+        let ciimage = CIImage(image: UIImage(named: "watson")!)
+        
+        filter.inputAngle = CGFloat(sender.value)
+        let output = filter.outputImage!
+        let context = CIContext()
+        let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
+        imageView.image = UIImage(cgImage: ciOutputImage!)
+        view.layoutIfNeeded()
     }
     
     @objc func handlerTapBtn() {
