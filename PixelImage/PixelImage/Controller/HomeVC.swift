@@ -49,8 +49,24 @@ class HomeVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(filtersChanged), name: NSNotification.Name(rawValue: "FiltersChanged"), object: nil)
         
+//        view.addSubview(imageView)
+//        imageView.image = filterImage().toUIImage()
+//        imageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 400, height: 650)
+//        imageView.center(inView: view)
+        
+        let ciimage = CIImage(image: UIImage(named: "watson")!)
+        let filter = TransverseChromaticAberration()
+        
+        filter.inputImage = ciimage
+        filter.inputBlur = 20
+        filter.inputSamples = 3
+        filter.inputFalloff = 0.5
+        
+        let output = filter.outputImage!
+        let context = CIContext()
+        let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
+        imageView.image = UIImage(cgImage: ciOutputImage!)
         view.addSubview(imageView)
-        imageView.image = filterImage().toUIImage()
         imageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 400, height: 650)
         imageView.center(inView: view)
         

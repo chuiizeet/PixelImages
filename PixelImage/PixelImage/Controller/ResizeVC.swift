@@ -29,14 +29,11 @@ class ResizeVC: UIViewController {
         imageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width/2, height: view.frame.height/2)
         imageView.center(inView: view)
         
-        print(imageView.frame)
-        
         let maskView = UIImageView()
         maskView.image = UIImage(named: "star")
         maskView.frame = imageView.bounds
         imageView.mask = maskView
-        
-        print(maskView.frame)
+ 
     }
     
 }
