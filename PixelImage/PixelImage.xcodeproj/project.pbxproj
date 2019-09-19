@@ -32,6 +32,8 @@
 		88A00ACB23239270009B3A35 /* FiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00ACA23239270009B3A35 /* FiltersModel.swift */; };
 		88A00ACD232395E0009B3A35 /* SelectFiltersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00ACC232395E0009B3A35 /* SelectFiltersVC.swift */; };
 		88A00AD023239664009B3A35 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00ACF23239664009B3A35 /* FilterCell.swift */; };
+		88EA9E612333106700A6FA4B /* bitsBoyz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA9E602333106700A6FA4B /* bitsBoyz.swift */; };
+		88EA9E63233316F300A6FA4B /* Bleach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA9E62233316F300A6FA4B /* Bleach.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		88A00ACA23239270009B3A35 /* FiltersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersModel.swift; sourceTree = "<group>"; };
 		88A00ACC232395E0009B3A35 /* SelectFiltersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFiltersVC.swift; sourceTree = "<group>"; };
 		88A00ACF23239664009B3A35 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
+		88EA9E602333106700A6FA4B /* bitsBoyz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bitsBoyz.swift; sourceTree = "<group>"; };
+		88EA9E62233316F300A6FA4B /* Bleach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bleach.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,8 @@
 				88019CBB2329B4D6009CFF37 /* ChromaticAberrationCIFilter.swift */,
 				88019CBD2329EFAD009CFF37 /* VHSTrackingLines.swift */,
 				88019CBF232AC40A009CFF37 /* RGBChannelCompositing.swift */,
+				88EA9E602333106700A6FA4B /* bitsBoyz.swift */,
+				88EA9E62233316F300A6FA4B /* Bleach.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -235,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88EA9E612333106700A6FA4B /* bitsBoyz.swift in Sources */,
 				88A00ACB23239270009B3A35 /* FiltersModel.swift in Sources */,
 				88019CBC2329B4D6009CFF37 /* ChromaticAberrationCIFilter.swift in Sources */,
 				88A00AC723238CBE009B3A35 /* Filter.swift in Sources */,
@@ -247,6 +254,7 @@
 				889B163B2325D08C0050D58D /* MainTabBVC.swift in Sources */,
 				889B163D2325D0FD0050D58D /* ResizeVC.swift in Sources */,
 				88A00AC3232232F3009B3A35 /* Image.swift in Sources */,
+				88EA9E63233316F300A6FA4B /* Bleach.swift in Sources */,
 				88A00AC1232232C9009B3A35 /* RGBAPixel.swift in Sources */,
 				889B163F2325D10B0050D58D /* CollageVC.swift in Sources */,
 				8833C9342324C01800AEC434 /* AddFiltersVC.swift in Sources */,
