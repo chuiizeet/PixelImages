@@ -23,6 +23,7 @@ class MainTabBVC: UITabBarController {
     // MARK: - Helper Functions
     
     func setupViewComponents() {
+        self.navigationController?.navigationBar.isHidden = true
         
         let filterImage = UIImage(named: "filter")!
         let resizeImage = UIImage(named: "resize")!

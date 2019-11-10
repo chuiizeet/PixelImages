@@ -8,47 +8,34 @@
 
 import UIKit
 
-class HomeVC: UIViewController {
-    
+private let reuseIdentifier = "FilterCell"
+
+class HomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
     // MARK: - Properties
     
-    var selectedFilters: FiltersModel = FiltersModel()
     var filter = ChromaticAberration()
-    var filtersHaveChanged = false
+    var filteredImages = [UIImage]()
+    var input1 = [String]()
+    var input2 = [String]()
     
     let imageView: UIImageView = {
         let iv = UIImageView()
+        iv.image = UIImage(named: "watson")
         iv.contentMode = .scaleAspectFit
         return iv
     }()
     
-    let radiusSlider: UISlider = {
-        let slider = UISlider()
-        slider.minimumValue = 0
-        slider.maximumValue = 25
-//        slider.addTarget(self, action: #selector(handlerRadius), for: .valueChanged)
-        return slider
-    }()
-    
-    let angleSlider: UISlider = {
-        let slider = UISlider()
-        slider.minimumValue = 0
-        slider.maximumValue = Float((Double.pi * 2))
-//        slider.addTarget(self, action: #selector(handlerAngle), for: .valueChanged)
-        return slider
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 20
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        return cv
     }()
     
     // MARK: - Init
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if filtersHaveChanged {
-            imageView.image = filterImage().toUIImage()
-            filtersHaveChanged = false
-        }
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,74 +48,114 @@ class HomeVC: UIViewController {
     func setupViewComponents() {
 
         view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(handlerTapBtn))
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Apply", style: .done, target: self, action: nil)
+        self.navigationController?.navigationBar.isHidden = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(filtersChanged), name: NSNotification.Name(rawValue: "FiltersChanged"), object: nil)
-        
-        let ciimage = CIImage(image: UIImage(named: "watson")!)
-        
-        filter.inputImage = ciimage
-        
-        let output = filter.outputImage!
-        let context = CIContext()
-        let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
-        imageView.image = UIImage(cgImage: ciOutputImage!)
-        view.addSubview(imageView)
-        imageView.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 400, height: 650)
-        imageView.centerX(inView: view)
-        
-//        view.addSubview(radiusSlider)
-//        radiusSlider.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 50, paddingBottom: 0, paddingRight: 50, width: 0, height: 0)
+//        let ciimage = CIImage(image: UIImage(named: "watson")!)
 //
-//        view.addSubview(angleSlider)
-//        angleSlider.anchor(top: radiusSlider.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 50, paddingBottom: 0, paddingRight: 50, width: 0, height: 0)
-
+//        filter.inputImage = ciimage
+//
+//        let output = filter.outputImage!
+//        let context = CIContext()
+//        let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
+//        imageView.image = UIImage(cgImage: ciOutputImage!)
+        view.addSubview(imageView)
+        imageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 32, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height/3)
         
+        guard let tbheight = self.tabBarController?.tabBar.frame.height else { return }
+        
+        view.addSubview(collectionView)
+        collectionView.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 0, paddingBottom: tbheight + 12, paddingRight: 0, width: 0, height: 0)
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(RandomFiltersCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        asyncLoader()
     }
     
-    func filterImage() -> Image {
-        var burger = Image(image: UIImage(named: "watson")!)
-        for filter in selectedFilters.filters {
-            burger = filter.apply(input: burger)
+    func asyncLoader() {
+        let group = DispatchGroup()
+        group.enter()
+        let dispatchQueue = DispatchQueue(label: "loadFilters", qos: .userInteractive)
+        dispatchQueue.async(group: group, execute: {
+            self.filterImage()
+        })
+        group.leave()
+        group.notify(queue: DispatchQueue.main) {
+            print("Complete")
         }
-        return burger
+    }
+    
+    func randomValue(minV: Float, maxV: Float) -> Float {
+        return Float.random(in: minV...maxV)
+    }
+    
+    func filterImage() {
+        let ciimage = CIImage(image: imageView.image!)
+        for _ in 1...25 {
+            let _first = CGFloat(randomValue(minV: 0, maxV: Float(Double.pi*2)))
+            let _sec = CGFloat(randomValue(minV: 0, maxV: 25))
+            
+            filter.inputImage = ciimage
+            filter.inputAngle = _first
+            filter.inputRadius = _sec
+            let output = filter.outputImage!
+            let context = CIContext()
+            let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
+            let finalImage = UIImage(cgImage: ciOutputImage!)
+            
+            DispatchQueue.main.async {
+                self.filteredImages.append(finalImage)
+                
+                // Valeus
+                self.input1.append(_first.description)
+                self.input2.append(_sec.description)
+
+                
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return filteredImages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! RandomFiltersCell
+        
+        cell.imageView.image = filteredImages[indexPath.row]
+        
+        // Inputs
+        cell.input1 = input1[indexPath.row]
+        cell.input2 = input2[indexPath.row]
+        
+        return cell
+        
     }
     
     // MARK: - Handlers
-    
-    @objc func filtersChanged() {
-        filtersHaveChanged = true
-    }
-    
-//    @objc func handlerRadius(_ sender: UISlider) {
-//        let ciimage = CIImage(image: UIImage(named: "watson")!)
-//
-//        filter.inputRadius = CGFloat(sender.value)
-//        let output = filter.outputImage!
-//        let context = CIContext()
-//        let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
-//        imageView.image = UIImage(cgImage: ciOutputImage!)
-//        view.layoutIfNeeded()
-//    }
-//
-//    @objc func handlerAngle(_ sender: UISlider) {
-//        let ciimage = CIImage(image: UIImage(named: "watson")!)
-//
-//        filter.inputAngle = CGFloat(sender.value)
-//        let output = filter.outputImage!
-//        let context = CIContext()
-//        let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
-//        imageView.image = UIImage(cgImage: ciOutputImage!)
-//        view.layoutIfNeeded()
-//    }
-    
-    @objc func handlerTapBtn() {
-        
-        let vc = SelectFiltersVC(style: .plain)
-        vc.filtersModel = selectedFilters
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-    }
 
 }
+
+extension HomeVC: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let size = view.frame.width/2.5
+        
+        return CGSize(width: size, height: size * 1.5)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    }
+}
+
