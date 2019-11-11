@@ -14,13 +14,14 @@ class HomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
 
     // MARK: - Properties
     
-    var filter = EightBit()
+    var filter = HistogramSpecification()
     var filteredImages = [UIImage]()
     var input1 = [String]()
     var input2 = [String]()
     var input3 = [String]()
     var input4 = [String]()
-    
+    var input5 = [String]()
+
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "watson")
@@ -52,14 +53,6 @@ class HomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
         
-//        let ciimage = CIImage(image: UIImage(named: "watson")!)
-//
-//        filter.inputImage = ciimage
-//
-//        let output = filter.outputImage!
-//        let context = CIContext()
-//        let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
-//        imageView.image = UIImage(cgImage: ciOutputImage!)
         view.addSubview(imageView)
         imageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 32, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height/3)
         
@@ -96,14 +89,15 @@ class HomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     func filterImage() {
         let ciimage = CIImage(image: imageView.image!)
-        for i in 1...4 {
-            let _first = CGFloat(randomValue(minV: 0, maxV: Float(2048)))
-            let _sec = CGFloat(randomValue(minV: 20, maxV: Float(200)))
-            let _third = CGFloat(randomValue(minV: Float(0), maxV: Float(1)))
-            let _forth = CGFloat(randomValue(minV: Float(0), maxV: Float(0.25)))
+        for i in 1...3 {
+            let _first = CGFloat(randomValue(minV: 0, maxV: Float(10)))
+            let _sec = CGFloat(randomValue(minV: 0, maxV: Float(20)))
+//            let _third = CGFloat(randomValue(minV: Float(0), maxV: Float(Double.pi*2)))
+//            let _forth = CGFloat(randomValue(minV: Float(1), maxV: Float(10)))
+//            let _fif = CGFloat(randomValue(minV: Float(-1), maxV: Float(0.5)))
             
             filter.inputImage = ciimage
-            filter.inputPaletteIndex = CGFloat(i)
+            filter.inputHistogramSource = ciimage
             
             guard let output = filter.outputImage else { print("nil"); return}
             let context = CIContext()
@@ -114,10 +108,11 @@ class HomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 self.filteredImages.append(finalImage)
                 
                 // Valeus
-//                self.input1.append(_first.description)
-//                self.input2.append(_sec.description)
+                self.input1.append(_first.description)
+                self.input2.append(_sec.description)
 //                self.input3.append(_third.description)
 //                self.input4.append(_forth.description)
+//                self.input5.append(_fif.description)
                 
                 self.collectionView.reloadData()
             }
@@ -137,10 +132,11 @@ class HomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         cell.imageView.image = filteredImages[indexPath.row]
         
         // Inputs
-//        cell.input1 = input1[indexPath.row]
-//        cell.input2 = input2[indexPath.row]
+        cell.input1 = input1[indexPath.row]
+        cell.input2 = input2[indexPath.row]
 //        cell.input3 = input3[indexPath.row]
 //        cell.input4 = input4[indexPath.row]
+//        cell.input5 = input5[indexPath.row]
         
         return cell
         
@@ -156,8 +152,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
         
         let size = view.frame.width/2.5
         
-        return CGSize(width: size, height: size * 1.5)
-        
+        return CGSize(width: size, height: size * 1.5)        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

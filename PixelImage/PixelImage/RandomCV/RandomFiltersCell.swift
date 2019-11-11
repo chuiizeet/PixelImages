@@ -24,6 +24,7 @@ class RandomFiltersCell: UICollectionViewCell {
     var input2: String?
     var input3: String?
     var input4: String?
+    var input5: String?
     
     let imageView: UIImageView = {
         let iv = UIImageView()
@@ -54,7 +55,7 @@ class RandomFiltersCell: UICollectionViewCell {
     // MARK: - Handlers
     
     @objc func handlerTap() {
-        print("1: \(input1 ?? " ") 2: \(input2 ?? " ") 3: \(input3 ?? " ") 4: \(input4 ?? " ")")
+        print("1: \(input1 ?? " ") 2: \(input2 ?? " ") 3: \(input3 ?? " ") 4: \(input4 ?? " ") 5: \(input5 ?? " ")")
     }
     
     required init?(coder: NSCoder) {
