@@ -14,10 +14,12 @@ class HomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
 
     // MARK: - Properties
     
-    var filter = ChromaticAberration()
+    var filter = EightBit()
     var filteredImages = [UIImage]()
     var input1 = [String]()
     var input2 = [String]()
+    var input3 = [String]()
+    var input4 = [String]()
     
     let imageView: UIImageView = {
         let iv = UIImageView()
@@ -94,14 +96,16 @@ class HomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     func filterImage() {
         let ciimage = CIImage(image: imageView.image!)
-        for _ in 1...25 {
-            let _first = CGFloat(randomValue(minV: 0, maxV: Float(Double.pi*2)))
-            let _sec = CGFloat(randomValue(minV: 0, maxV: 25))
+        for i in 1...4 {
+            let _first = CGFloat(randomValue(minV: 0, maxV: Float(2048)))
+            let _sec = CGFloat(randomValue(minV: 20, maxV: Float(200)))
+            let _third = CGFloat(randomValue(minV: Float(0), maxV: Float(1)))
+            let _forth = CGFloat(randomValue(minV: Float(0), maxV: Float(0.25)))
             
             filter.inputImage = ciimage
-            filter.inputAngle = _first
-            filter.inputRadius = _sec
-            let output = filter.outputImage!
+            filter.inputPaletteIndex = CGFloat(i)
+            
+            guard let output = filter.outputImage else { print("nil"); return}
             let context = CIContext()
             let ciOutputImage = context.createCGImage(output, from: ciimage!.extent)
             let finalImage = UIImage(cgImage: ciOutputImage!)
@@ -110,9 +114,10 @@ class HomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 self.filteredImages.append(finalImage)
                 
                 // Valeus
-                self.input1.append(_first.description)
-                self.input2.append(_sec.description)
-
+//                self.input1.append(_first.description)
+//                self.input2.append(_sec.description)
+//                self.input3.append(_third.description)
+//                self.input4.append(_forth.description)
                 
                 self.collectionView.reloadData()
             }
@@ -132,8 +137,10 @@ class HomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         cell.imageView.image = filteredImages[indexPath.row]
         
         // Inputs
-        cell.input1 = input1[indexPath.row]
-        cell.input2 = input2[indexPath.row]
+//        cell.input1 = input1[indexPath.row]
+//        cell.input2 = input2[indexPath.row]
+//        cell.input3 = input3[indexPath.row]
+//        cell.input4 = input4[indexPath.row]
         
         return cell
         

@@ -35,6 +35,7 @@
 		88EA9E612333106700A6FA4B /* bitsBoyz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA9E602333106700A6FA4B /* bitsBoyz.swift */; };
 		88EA9E63233316F300A6FA4B /* Bleach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA9E62233316F300A6FA4B /* Bleach.swift */; };
 		88F2C22D23784D5A00818B18 /* RandomFiltersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2C22C23784D5900818B18 /* RandomFiltersCell.swift */; };
+		88F2C230237992C300818B18 /* PixelCam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2C22F237992C300818B18 /* PixelCam.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		88EA9E602333106700A6FA4B /* bitsBoyz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bitsBoyz.swift; sourceTree = "<group>"; };
 		88EA9E62233316F300A6FA4B /* Bleach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bleach.swift; sourceTree = "<group>"; };
 		88F2C22C23784D5900818B18 /* RandomFiltersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomFiltersCell.swift; sourceTree = "<group>"; };
+		88F2C22F237992C300818B18 /* PixelCam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelCam.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		88A00AA623222A5E009B3A35 /* PixelImage */ = {
 			isa = PBXGroup;
 			children = (
+				88F2C22E2379928700818B18 /* PixelCam */,
 				88F2C22B23784B2200818B18 /* RandomCV */,
 				88A00ACE2323964E009B3A35 /* View */,
 				88A00ABD23222CB1009B3A35 /* Utils */,
@@ -179,6 +182,14 @@
 				88F2C22C23784D5900818B18 /* RandomFiltersCell.swift */,
 			);
 			path = RandomCV;
+			sourceTree = "<group>";
+		};
+		88F2C22E2379928700818B18 /* PixelCam */ = {
+			isa = PBXGroup;
+			children = (
+				88F2C22F237992C300818B18 /* PixelCam.swift */,
+			);
+			path = PixelCam;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +265,7 @@
 			files = (
 				88EA9E612333106700A6FA4B /* bitsBoyz.swift in Sources */,
 				88A00ACB23239270009B3A35 /* FiltersModel.swift in Sources */,
+				88F2C230237992C300818B18 /* PixelCam.swift in Sources */,
 				88019CBC2329B4D6009CFF37 /* ChromaticAberrationCIFilter.swift in Sources */,
 				88F2C22D23784D5A00818B18 /* RandomFiltersCell.swift in Sources */,
 				88A00AC723238CBE009B3A35 /* Filter.swift in Sources */,

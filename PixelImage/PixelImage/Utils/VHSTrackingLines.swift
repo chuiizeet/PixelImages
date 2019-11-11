@@ -98,7 +98,7 @@ class VHSTrackingLines: CIFilter
         let extent = inputImage.extent
         let arguments = [inputImage, noise, inputTime, inputSpacing, inputStripeHeight, inputBackgroundNoise] as [Any]
         
-        let final = kernel.apply(extent: extent, arguments: arguments) //?.applyingFilter("CIPhotoEffectNoir")
+        let final = kernel.apply(extent: extent, arguments: arguments)! .applyingFilter("CIPhotoEffectNoir")
         
         return final
     }
@@ -189,17 +189,19 @@ class CRTColorFilter: CIFilter
     var pixelHeight: CGFloat = 12.0
     
     let crtColorKernel = CIColorKernel(source:
-        "kernel vec4 crtColor(__sample image, float pixelWidth, float pixelHeight) \n" +
+        "kernel vec4 crtColor(sampler image, float pixelWidth, float pixelHeight) \n" +
             "{ \n" +
+            "   vec2 v2 = destCoord(); \n" +
+            "   vec4 v4 = sample(image, samplerTransform(image, v2)); \n" +
             
-            "   int columnIndex = int(mod(samplerCoord(image).x / pixelWidth, 3.0)); \n" +
-            "   int rowIndex = int(mod(samplerCoord(image).y, pixelHeight)); \n" +
+            "   int columnIndex = int(mod(v2.x / pixelWidth, 3.0)); \n" +
+            "   int rowIndex = int(mod(v2.y, pixelHeight)); \n" +
             
             "   float scanlineMultiplier = (rowIndex == 0 || rowIndex == 1) ? 0.3 : 1.0;" +
             
-            "   float red = (columnIndex == 0) ? image.r : image.r * ((columnIndex == 2) ? 0.3 : 0.2); " +
-            "   float green = (columnIndex == 1) ? image.g : image.g * ((columnIndex == 2) ? 0.3 : 0.2); " +
-            "   float blue = (columnIndex == 2) ? image.b : image.b * 0.2; " +
+            "   float red = (columnIndex == 0) ? v4.r : v4.r * ((columnIndex == 2) ? 0.3 : 0.2); " +
+            "   float green = (columnIndex == 1) ? v4.g : v4.g * ((columnIndex == 2) ? 0.3 : 0.2); " +
+            "   float blue = (columnIndex == 2) ? v4.b : v4.b * 0.2; " +
             
             "   return vec4(red * scanlineMultiplier, green * scanlineMultiplier, blue * scanlineMultiplier, 1.0); \n" +
         "}"
@@ -213,7 +215,8 @@ class CRTColorFilter: CIFilter
         {
             let dod = inputImage.extent
             let args = [inputImage, pixelWidth, pixelHeight] as [Any]
-            return crtColorKernel.apply(extent: dod, arguments: args)
+            let img = crtColorKernel.apply(extent: dod, arguments: args)
+            return img
         }
         return nil
     }
